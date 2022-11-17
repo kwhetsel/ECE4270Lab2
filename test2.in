@@ -1,0 +1,21 @@
+addi $t0, $zero, 0
+addi $t1, $zero, 0
+addi $s0, $zero, 0xA
+addi $s1, $zero, 0x10010000
+ble $s0, $t0, 0x0000004C
+addi $t2, $t0, 0x1
+addi $t1, $zero, 0
+subi $s5, $0, 0x1
+ble $s5, $t1, 0x0000001C
+add $s2, $s1, $t1
+add $s3, $t3, $zero
+addi $s3, $t4, 0x1
+lw $t5, $s2($s0)
+lw $t6, $s3($s0)
+beq $t5, $t6, 0x00000050
+addi $t1, $t1, 0x1
+SYSCALL
+add $s4, $t2, $zero
+add $s2, $s3, $zero
+add $s3, $s4, $zero
+j 0x0000001C

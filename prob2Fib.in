@@ -1,0 +1,64 @@
+ori $a0, $zero, 10
+jal 0x0000006C
+add $a0, $v0, $zero
+ori $v0, $zero, 1
+syscall
+ori $v0, $zero, 4
+syscall
+ori $a0, $zero, 1
+ori $a1, $zero, 0
+ori $a2, $zero, 10
+jal 0x0000006C
+add $a0, $v0, $zero
+ori $v0, $zero, 1
+syscall
+ori $v0, $zero, 4
+syscall
+ori $v0, $zero, 4
+lui $a0, exit_str
+ori $s0, $a0, 16
+syscall
+ori $v0, $zero, 8
+lui $a0, new_str
+ori $s0, $a0, 16
+ori $a1, $zero, 32
+syscall
+lw $ra, 12($sp)
+lw $fp, 8($sp)
+addiu $sp, $sp, 24
+jr $ra
+subu $sp, $sp, 32
+sw $ra, 20($sp)
+sw $fp, 16($sp)
+sw $s0, 12($sp)
+addiu $fp, $sp, 28
+seq $t0, $a0, $zero
+beq $t0, $zero, 0x00000090
+ori $v0, $zero, 0
+j 0x000000BC
+seq $t0, $a0, 1
+beq $t0, $zero, 0x000000A0
+ori $v0, $zero, 1
+j 0x000000BC
+subu $s0, $a0, 1
+add $a0, $s0, $zero
+jal 0x0000006C
+subu $a0, $s0, 1
+add $s0, $v0, $zero
+jal 0x0000006C
+add $v0, $v0, $s0
+lw $ra, 20($sp)
+lw $fp, 16($sp)
+lw $s0, 12($sp)
+addiu $sp, $sp, 32
+jr $ra
+seq $t0, $a2, $zero
+beq $t0, $zero, 0x000000E0
+add $v0, $a1, $zero
+j 0x000000F4
+add $t0, $a0, $a1
+add $a1, $a0, $zero
+add $a0, $t0, $zero
+subu $a2, $a2, 1
+j 0x000000D0
+jr $ra
